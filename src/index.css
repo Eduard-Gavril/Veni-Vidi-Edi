@@ -1,11 +1,60 @@
-:root{
-  --wine:#6A0C0B;
-  --basil:#025928;
-  --cream:#FFF8F1;
-  --sun:#F5BB31;
-  --black:#1E1E1C;
-  --font-display:'Cinzel',serif;
-  --font-body:'Barlow',sans-serif;
+.hero-italian {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: linear-gradient(110deg, #fffaf4 85%, #ef4b3f22 100%);
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  position: relative;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font-body);background:var(--cream);color:var(--black);}
+
+.hero-title {
+  font-size: 4rem;
+  color: #b2001c;
+  text-shadow: 2px 2px 12px #fff1;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 0.6em;
+}
+
+.hero-slogan {
+  font-size: 1.6rem;
+  color: #18743f;
+  margin-bottom: 1.5em;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.8em 2em;
+  font-size: 1.2rem;
+  background: #25d366;
+  color: #fff;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 18px #25d36633;
+  transition: background 0.2s;
+}
+
+.hero-btn:hover {
+  background: #16b042;
+}
+
+.hero-flag {
+  width: 84px;
+  height: 20px;
+  margin: 2em auto 0;
+  border-radius: 8px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 2px 10px #0001;
+}
+.hero-flag::before,
+.hero-flag::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 28px;
+}
+.hero-flag::before { background: #008246; }
+.hero-flag { background: #fff; }
+.hero-flag::after { background: #ef4b3f; }

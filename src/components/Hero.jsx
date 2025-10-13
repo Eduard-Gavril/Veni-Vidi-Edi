@@ -4,20 +4,20 @@ import { SITE } from '../config/site'
 
 export default function Hero() {
   const title = useRef(null)
-
   useEffect(() => {
     gsap.fromTo(title.current,
       { opacity: 0, y: 60 },
-      { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' })
+      { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }
+    )
   }, [])
-
   return (
-    <section style={{ height: '100vh', display: 'grid', placeContent: 'center', textAlign: 'center' }}>
-      <h1 ref={title} style={{ fontFamily: 'var(--font-display)', fontSize: '4rem', color: 'var(--wine)' }}>
-        {SITE.name}
-      </h1>
-      <p style={{ fontSize: '1.5rem' }}>{SITE.slogan}</p>
-      <a href={`https://wa.me/${SITE.phone}`} className="btn">Ordina su WhatsApp</a>
+    <section className="hero-italian">
+      <h1 ref={title} className="hero-title">{SITE.name}</h1>
+      <p className="hero-slogan">{SITE.slogan}</p>
+      <a href={`https://wa.me/${SITE.phone}`} className="hero-btn" target="_blank" rel="noopener noreferrer">
+        Ordina su WhatsApp
+      </a>
+      <div className="hero-flag"></div>
     </section>
   )
 }

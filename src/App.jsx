@@ -1,15 +1,16 @@
 import Hero from './components/Hero'
 import Menu from './components/Menu'
-import Map from './components/Map'
-import './index.css'
+import About from './components/About'
+import Contact from './components/Contact'
+import './App.css'
 
-function App() {
+export default function App() {
   return (
     <>
       <Hero />
+      <About />
       <Menu />
-      <Map />
+      <Contact />
     </>
   )
 }
-export default App
