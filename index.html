@@ -1,63 +1,19 @@
 <!doctype html>
 <html lang="ro">
-<head>
-  <meta charset="utf-8"/>
-  <title>Veni Vidi Edi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <div id="loader"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <header class="on-top">
-    <h1>Veni Vidi Edi</h1>
-    <nav>
-      <a href="#menu">Menu</a>
-      <a href="#about">Chi siamo</a>
-      <a href="#map">Dove siamo</a>
-    </nav>
-  </header>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 
-  <section id="hero">
-    <img src="carretto-xl.jpg" alt="Il nostro carretto" id="hero-img">
-    <div class="hero-text">
-      <h2>Un angolo d’Italia per le strade di Timișoara</h2>
-      <a class="btn" href="https://wa.me/40750438655?text=Ciao! Vorrei ordinare: " target="_blank">Ordina su WhatsApp</a>
-    </div>
-  </section>
-
-  <section id="menu">
-    <h2>Menu</h2>
-    <div id="menu-grid"></div>
-  </section>
-
-  <section id="about" class="side-by-side">
-    <div>
-      <h2>Il carretto italiano</h2>
-      <p>Forno a legna mobile, ingredienti italiani, niente surgelati.  
-         Pizze solo su ordinazione, spritz come a Venezia.</p>
-    </div>
-    <img src="forno.jpg" alt="Forno a legna">
-  </section>
-
-  <section id="map">
-    <h2>Dove siamo oggi</h2>
-    <div class="map-box">
-      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=21.2256,45.7489,21.2356,45.7589&amp;layer=mapnik" width="100%" height="320" frameborder="0"></iframe>
-      <div class="orari-box">
-        <p><span>🕒</span> Lun-Dom 11:00 – 21:00</p>
-        <p><span>📍</span> Piața Victoriei (vicino all’Orologio)</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Veni Vidi Edi – made with 🇮🇹 in România</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
+    <title>Veni Vidi Edi</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

@@ -1,0 +1,11 @@
+:root{
+  --wine:#6A0C0B;
+  --basil:#025928;
+  --cream:#FFF8F1;
+  --sun:#F5BB31;
+  --black:#1E1E1C;
+  --font-display:'Cinzel',serif;
+  --font-body:'Barlow',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--cream);color:var(--black);}
