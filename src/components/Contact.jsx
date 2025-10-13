@@ -1,11 +1,11 @@
-import { SITE } from '../config/site'
+import { SITE } from '../config/site';
 
 export default function Contact() {
   return (
-    <footer className="contact-section" id="contact">
-      <p>Seguici su <a href={SITE.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></p>
-      <p>Oppure scrivici su WhatsApp: <a href={`https://wa.me/${SITE.phone}`}>{SITE.phone}</a></p>
-      <p>&copy; {new Date().getFullYear()} {SITE.name}</p>
-    </footer>
-  )
+    <section style={{ padding: '4rem 2rem', textAlign: 'center' }}>
+      <h2>Contattaci</h2>
+      <p>Instagram: <a href={SITE.socials.instagram}>@venividiedi</a></p>
+      <p>Facebook: <a href={SITE.socials.facebook}>Veni Vidi Edi</a></p>
+    </section>
+  );
 }

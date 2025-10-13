@@ -1,25 +1,30 @@
-const specials = [
-  { name: "Pizza Margherita", price: "€8", descr: "Pomodoro San Marzano, mozzarella fior di latte, basilico fresco" },
-  { name: "Arancini Siciliani", price: "€4", descr: "Riso con ragù, piselli e panatura croccante" },
-  { name: "Cannolo Siciliano", price: "€3", descr: "Cialda croccante, ricotta di pecora, gocce di cioccolato" },
-  { name: "Espresso", price: "€2", descr: "Caffè italiano autentico, aroma intenso" }
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+
+const menu = [
+  { name: 'Carbonara Trap', desc: 'Uovo, guanciale, pecorino, pepe nero' },
+  { name: 'Bruschetta al pomodoro', desc: 'Pane abbrustolito, pomodoro, basilico' },
+  { name: 'Tiramisù in barattolo', desc: 'Mascarpone, caffè, cacao amaro' },
 ];
 
 export default function Menu() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(ref.current.children, { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.2, duration: 0.8, scrollTrigger: { trigger: ref.current } });
+  }, []);
+
   return (
-    <section className="menu-section" id="menu">
-      <h2>I nostri classici</h2>
-      <ul className="menu-list">
-        {specials.map((item, idx) => (
-          <li key={idx} className="menu-item">
-            <div>
-              <span className="menu-name">{item.name}</span>
-              <span className="menu-price">{item.price}</span>
-            </div>
-            <p className="menu-descr">{item.descr}</p>
-          </li>
+    <section style={{ padding: '4rem 2rem', backgroundColor: '#fff' }}>
+      <h2>Menu</h2>
+      <div ref={ref}>
+        {menu.map((item, i) => (
+          <div key={i} style={{ marginBottom: '2rem' }}>
+            <h3>{item.name}</h3>
+            <p>{item.desc}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
-  )
+  );
 }
