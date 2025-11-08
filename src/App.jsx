@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import VeniVidiEdi from './components/VeniVidiEdi'
 import './styles/main.css'
 
+
 export default function App() {
   const appRef = useRef(null)
 

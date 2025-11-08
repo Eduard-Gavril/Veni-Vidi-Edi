@@ -60,3 +60,25 @@
 .hero-flag { background: #fff; }
 .hero-flag::after { background: #ef4b3f; }
 
+
+/* Responsive tweaks for small screens */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-slogan {
+    font-size: 1rem;
+  }
+
+  .hero-btn {
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+  }
+
+  .hero-flag {
+    width: 64px;
+    height: 16px;
+  }
+}
+

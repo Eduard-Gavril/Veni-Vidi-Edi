@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { SITE } from '../config/site'
 
@@ -10,6 +10,7 @@ export default function VeniVidiEdi() {
   const menuRef = useRef(null)
   const aboutRef = useRef(null)
   const tlRef = useRef()
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   useEffect(() => {
     // Simple entrance animation using GSAP
@@ -56,6 +57,17 @@ export default function VeniVidiEdi() {
 <p className="text-xl text-crema italic">Dolce far niente</p>
           </div>
         </div>
+        {/* mobile hamburger */}
+        <div className="md:hidden">
+          <button
+            aria-label="Apri menu"
+            className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
+            onClick={() => setShowMobileMenu(v => !v)}
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+        </div>
+
         <div className="hidden md:flex items-center gap-6 text-sm text-gray-700">
           <a href="#menu" className="hover:underline">Menu</a>
           <a href="#about" className="hover:underline">Chi siamo</a>
@@ -63,6 +75,16 @@ export default function VeniVidiEdi() {
           <a href="#contact" className="hover:underline">Contatti</a>
         </div>
       </nav>
+
+      {/* Mobile menu (small screens) */}
+      {showMobileMenu && (
+        <div className="md:hidden px-6 pb-4 space-y-2 bg-white shadow-sm">
+          <a href="#menu" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Menu</a>
+          <a href="#about" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Chi siamo</a>
+          <a href="#locations" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Località</a>
+          <a href="#contact" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Contatti</a>
+        </div>
+      )}
 
       {/* HERO */}
       <header ref={heroRef} className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
