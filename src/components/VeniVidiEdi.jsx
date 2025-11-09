@@ -190,7 +190,7 @@ Ogni ricetta racconta una storia di casa, di tempo e di gusto vero.</p>
           {/* Visuale mockup del food truck */}
           <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
             <div className="p-6">
-              <img src="src\assets\img\pizzaP.jpg" alt="Veni Vidi Edi food truck" className="w-full h-56 object-cover" />
+              <img src="../src/assets/img/pizzaP.jpg" alt="Veni Vidi Edi food truck" className="w-full h-56 object-cover" />
               <div className="mt-4">
                 <div className="font-semibold text-lg">Menu del giorno</div>
                 <div className="text-sm text-black mt-2">Piatti italiani preparati al momento — vieni a provarli.</div>
@@ -239,7 +239,7 @@ Ogni ricetta racconta una storia di casa, di tempo e di gusto vero.</p>
 
           <div>
             <div className="bg-white rounded-2xl shadow p-6">
-              <img src="src\assets\img\chef_hands.jpg" alt="chef" className="w-full h-60 object-cover rounded-md" />
+              <img src="../src/assets/img/chef_hands.jpg" alt="chef" className="w-full h-60 object-cover rounded-md" />
               <div className="mt-4">
                 <div className="font-semibold">Il nostro approccio</div>
                 <div className="text-sm text-black mt-2">Un mix di tecnica italiana e calore locale. Più che cibo: esperienza.</div>
