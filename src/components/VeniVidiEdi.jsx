@@ -74,32 +74,32 @@ export default function VeniVidiEdi() {
   }, [])
 
   // Sample menu data (replace with real data / API later)
-const menu = [
-  {
-    id: 1,
-    name: 'Pizza a portafoglio',
-    desc: 'Classica pizza napoletana piegata a portafoglio, con pomodoro, mozzarella e basilico fresco.',
-    price: 'RON 15'
-  },
-  {
-    id: 2,
-    name: 'Pizza a ruota di carro',
-    desc: 'Pizza tradizionale napoletana, sottile e grande, con bordo morbido e condimenti genuini.',
-    price: 'RON 22'
-  },
-  {
-    id: 3,
-    name: 'Spritz',
-    desc: 'Cocktail italiano con Aperol, prosecco e una spruzzata di soda, servito con fetta d’arancia.',
-    price: 'RON 17'
-  },
-  {
-    id: 4,
-    name: "Tiramisù",
-    desc: 'Dessert al cucchiaio con savoiardi, caffè espresso e crema al mascarpone.',
-    price: 'RON 20'
-  }
-];
+  const menu = [
+    {
+      id: 1,
+      name: 'Pizza a portafoglio',
+      desc: 'Classica pizza napoletana piegata a portafoglio, con pomodoro, mozzarella e basilico fresco.',
+      price: 'RON 15'
+    },
+    {
+      id: 2,
+      name: 'Pizza a ruota di carro',
+      desc: 'Pizza tradizionale napoletana, sottile e grande, con bordo morbido e condimenti genuini.',
+      price: 'RON 22'
+    },
+    {
+      id: 3,
+      name: 'Spritz',
+      desc: 'Cocktail italiano con Aperol, prosecco e una spruzzata di soda, servito con fetta d’arancia.',
+      price: 'RON 17'
+    },
+    {
+      id: 4,
+      name: "Tiramisù",
+      desc: 'Dessert al cucchiaio con savoiardi, caffè espresso e crema al mascarpone.',
+      price: 'RON 20'
+    }
+  ];
 
   // Locations - example for Romania (replace coordinates with real ones)
   const locations = [
@@ -119,8 +119,10 @@ const menu = [
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center font-bold">VVE</div>
           <div>
-            <h1 className="text-5xl font-extrabold text-[#EF9651]">Veni Vidi Edi</h1>
-          <p className="text-xl text-black italic">L'arte del dolce far niente</p>
+            <h1 className="text-5xl font-extrabold text-[#EF9651] font-fleur">
+              Veni Vidi Edi
+            </h1>
+          <p className="text-xl text-black italic ">L'arte del dolce far niente</p>
           </div>
         </div>
         {/* mobile hamburger */}
@@ -134,21 +136,21 @@ const menu = [
           </button>
         </div>
 
-        <div className="hidden md:flex items-center gap-6 text-sm text-black">
-          <a href="#menu" className="hover:underline">Menu</a>
-          <a href="#about" className="hover:underline">Chi siamo</a>
-          <a href="#locations" className="hover:underline">Località</a>
-          <a href="#contact" className="hover:underline">Contatti</a>
+        <div className="hidden md:flex items-center gap-4 text-sm text-zinc-900">
+          <a href="#menu" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-white/90 text-zinc-900 rounded-full shadow-sm hover:shadow-md transition">Menu</a>
+          <a href="#about" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-white/90 text-zinc-900 rounded-full shadow-sm hover:shadow-md transition">Chi siamo</a>
+          <a href="#locations" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-white/90 text-zinc-900 rounded-full shadow-sm hover:shadow-md transition">Località</a>
+          <a href="#contact" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-white/90 text-zinc-900 rounded-full shadow-sm hover:shadow-md transition">Contatti</a>
         </div>
       </nav>
 
       {/* Mobile menu (small screens) */}
       {showMobileMenu && (
-        <div className="md:hidden px-6 pb-4 space-y-2 bg-white shadow-sm">
-          <a href="#menu" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Menu</a>
-          <a href="#about" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Chi siamo</a>
-          <a href="#locations" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Località</a>
-          <a href="#contact" onClick={() => setShowMobileMenu(false)} className="block py-2 text-gray-800 font-medium">Contatti</a>
+        <div className="md:hidden px-4 pb-4 space-y-3 bg-white shadow-sm">
+          <a href="#menu" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-white text-zinc-900 rounded-full shadow-sm">Menu</a>
+          <a href="#about" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-white text-zinc-900 rounded-full shadow-sm">Chi siamo</a>
+          <a href="#locations" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-white text-zinc-900 rounded-full shadow-sm">Località</a>
+          <a href="#contact" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-white text-zinc-900 rounded-full shadow-sm">Contatti</a>
         </div>
       )}
 
@@ -156,7 +158,7 @@ const menu = [
       <header ref={heroRef} className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
         <div className="flex-1">
           <h1 className="stagger text-4xl md:text-5xl font-extrabold leading-tight text-zinc-900">Il tempo di un caffè, il gusto di una pausa</h1>
-          <p className="stagger mt-4 text-xl text-zinc-900">Dal cuore dell’Italia alle strade di Romania.
+          <p className="stagger mt-4 text-xl text-zinc-900 ">Dal cuore dell’Italia alle strade di Romania.
 Ogni ricetta racconta una storia di casa, di tempo e di gusto vero.</p>
 
           <div className="stagger mt-6 flex gap-3">
@@ -282,13 +284,13 @@ Ogni ricetta racconta una storia di casa, di tempo e di gusto vero.</p>
 
           <div className="bg-white rounded-xl p-6 shadow">
             <div className="font-semibold">Info rapida</div>
-            <div className="mt-2 text-sm text-black">Telefono: +40 7xx xxx xxx</div>
+            <div className="mt-2 text-sm text-black">Telefono: +40 750 438 655</div>
             <div className="mt-1 text-sm text-black">Email: hello@venividiedi.ro</div>
 
             <div className="mt-4">
               <div className="font-semibold">Social</div>
               <div className="mt-2 flex gap-3">
-                <a href="#" className="text-sm underline">Instagram</a>
+                <a href="https://www.instagram.com/_veni_vidi_edi_/" className="text-sm underline">Instagram</a>
                 <a href="#" className="text-sm underline">Facebook</a>
               </div>
             </div>

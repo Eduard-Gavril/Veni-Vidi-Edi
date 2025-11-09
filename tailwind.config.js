@@ -16,6 +16,7 @@ module.exports = {
       fontFamily: {
         heading: ['"Playfair Display"', 'serif'],
         body: ['"Roboto"', 'sans-serif'],
+        'fleur': ['"Fleur De Leah"', 'cursive'],
       }
     },
   },
