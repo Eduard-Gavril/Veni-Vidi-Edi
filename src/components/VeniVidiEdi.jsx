@@ -108,8 +108,13 @@ const menu = [
   ]
 
   return (
-    <div className="min-h-screen text-zinc-900 antialiased" style={{ background: 'linear-gradient(to right, #3F7D58 10%, #EFEFEF 10%, #EFEFEF 90%, #EC5228 90%)' }} >
-      {/* NAV */}
+  <div 
+    className="min-h-screen text-zinc-900 antialiased" 
+    style={{ 
+      background: 'linear-gradient(to right, #008c45 0%, transparent 3%, transparent 97%, #cd212a 100%), #EFEFEF' 
+    }}
+  >
+  {/* NAV */}
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center font-bold">VVE</div>
