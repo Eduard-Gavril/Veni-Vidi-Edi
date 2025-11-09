@@ -9,6 +9,12 @@
   position: relative;
 }
 
+/* Ensure cards are visible by default in case animations set inline opacity */
+.card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 .hero-title {
   font-size: 4rem;
   color: #b2001c;

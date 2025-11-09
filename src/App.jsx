@@ -8,15 +8,22 @@ export default function App() {
   const appRef = useRef(null)
 
   useEffect(() => {
-    gsap.fromTo(
-      appRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.2, ease: 'power2.out' }
-    )
+    try {
+      gsap.fromTo(
+        appRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 2, ease: 'power2.out' }
+      )
+      console.log('GSAP animation completed')
+    } catch (e) {
+      // If GSAP fails for any reason, ensure the app is visible
+      if (appRef.current) appRef.current.style.opacity = '1'
+      console.warn('GSAP animation failed, falling back to visible state', e)
+    }
   }, [])
 
   return (
-    <div ref={appRef} style={{ opacity: 0 }}>
+    <div ref={appRef}>
       <VeniVidiEdi />
     </div>
   )
