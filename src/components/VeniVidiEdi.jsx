@@ -9,6 +9,8 @@ import aPortafolioImg from '../assets/img/a_portafolgio.png'
 import ruotaImg from '../assets/img/ruota_di_carro.png'
 import spritzImg from '../assets/img/spritz.png'
 import tiramisuImg from '../assets/img/tiramisu.png'
+import pizzaPImg from '../assets/img/pizzaP.jpg'
+import stesuraImg from '../assets/img/stesura.png'
 
 // Veni Vidi Edi - Single-file React component
 // Tailwind CSS assumed in project
@@ -204,7 +206,7 @@ export default function VeniVidiEdi({ navigate }) {
           {/* Visuale mockup del food truck */}
           <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
             <div className="p-6">
-              <img src="../src/assets/img/pizzaP.jpg" alt="Veni Vidi Edi food truck" className="w-full h-56 object-cover" />
+              <img src={pizzaPImg} alt="Veni Vidi Edi food truck" className="w-full h-56 object-cover" />
               <div className="mt-4">
                 <div className="font-semibold text-lg">Pizza zilei</div>
                 <div className="text-sm text-black mt-2">Vino și încearcă pizza zilei, gata în doar 90 de secunde.</div>
@@ -279,7 +281,7 @@ export default function VeniVidiEdi({ navigate }) {
 
           <div className="space-y-4">
             <div className="bg-white rounded-2xl shadow p-6">
-              <img src="../src/assets/img/stesura.png" alt="chef" className="w-full h-60 object-cover rounded-md" />
+              <img src={stesuraImg} alt="chef" className="w-full h-60 object-cover rounded-md" />
               <div className="mt-4">
                 <div className="font-semibold">Abordarea noastră</div>
                 <div className="text-sm text-black mt-2">Un amestec de tehnică italiană și căldură locală. Mai mult decât mâncare: o experiență.</div>
