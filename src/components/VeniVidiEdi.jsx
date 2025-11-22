@@ -21,6 +21,8 @@ export default function VeniVidiEdi({ navigate }) {
   const aboutRef = useRef(null)
   const tlRef = useRef()
   const [showMobileMenu, setShowMobileMenu] = useState(false)
+  const [drawerVisible, setDrawerVisible] = useState(false)
+  const [drawerActive, setDrawerActive] = useState(false)
 
   useEffect(() => {
     // Robust entrance animation using GSAP: guard refs and fallback to
@@ -79,6 +81,21 @@ export default function VeniVidiEdi({ navigate }) {
     return () => clearTimeout(t)
   }, [])
 
+  // control drawer animation lifecycle when showMobileMenu toggles
+  useEffect(() => {
+    if (showMobileMenu) {
+      setDrawerVisible(true)
+      // activate next tick so transition can run
+      const id = setTimeout(() => setDrawerActive(true), 20)
+      return () => clearTimeout(id)
+    }
+
+    // hide: deactivate first then remove from DOM after transition
+    setDrawerActive(false)
+    const id = setTimeout(() => setDrawerVisible(false), 320)
+    return () => clearTimeout(id)
+  }, [showMobileMenu])
+
   // Sample menu data (replace with real data / API later)
   const menu = [
     {
@@ -106,7 +123,7 @@ export default function VeniVidiEdi({ navigate }) {
       id: 4,
       name: "Tiramisù",
       img: tiramisuImg,
-      desc: 'Desert cremos cu pișcoturi, cafea espresso și cremă de mascarpone.',
+      desc: 'Desert cremos cu pișcoturi, cafea espresso și cremă de mascarpone facut de noi.',
       price: 'RON 20'
     }
   ];
@@ -120,6 +137,9 @@ export default function VeniVidiEdi({ navigate }) {
       hours: '11:00 - 20:00'
     }
   ]
+
+  // WhatsApp contact number (international format without +)
+  const waNumber = '40750438655'
 
   return (
   <div 
@@ -153,22 +173,80 @@ export default function VeniVidiEdi({ navigate }) {
         <div className="hidden md:flex items-center gap-4 text-sm">
           <a href="#menu" className="inline-flex items-center justify-center w-28 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Menu</a>
           <a href="/recipes" onClick={(e) => { e.preventDefault(); navigate?.('/recipes') }} className="inline-flex items-center justify-center w-28 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Rețete</a>
-          <a href="#about" className="inline-flex items-center justify-center w-28 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Chi siamo</a>
-          <a href="#locations" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Località</a>
-          <a href="#contact" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Contatti</a>
+          <a href="#about" className="inline-flex items-center justify-center w-28 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Cine suntem</a>
+          <a href="#locations" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Locaţie</a>
+          <a href="#contact" className="inline-flex items-center justify-center w-32 px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm hover:shadow-md transition">Contactaţi-ne</a>
         </div>
       </nav>
 
       {/* Mobile menu (small screens) */}
-      {showMobileMenu && (
-        <div className="md:hidden px-4 pb-4 space-y-3 bg-white shadow-sm">
-          <a href="#menu" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm">Menu</a>
-          <a href="/recipes" onClick={(e) => { e.preventDefault(); setShowMobileMenu(false); navigate?.('/recipes') }} className="block w-full text-center px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm">Rețete</a>
-          <a href="#about" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm">Chi siamo</a>
-          <a href="#locations" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm">Località</a>
-          <a href="#contact" onClick={() => setShowMobileMenu(false)} className="block w-full text-center px-4 py-2 bg-amber-500 text-white rounded-full shadow-sm">Contatti</a>
-        </div>
+      {/* Sliding drawer for mobile menu */}
+      {drawerVisible && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            onClick={() => setShowMobileMenu(false)}
+            aria-hidden
+          />
+
+          <aside
+            className={`fixed top-0 right-0 h-full w-80 bg-gradient-to-b from-white to-amber-50 z-50 shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${drawerActive ? 'translate-x-0' : 'translate-x-full'}`}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="p-4 flex items-center justify-between border-b border-amber-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center font-bold text-amber-700">VVE</div>
+                <div>
+                  <div className="font-semibold">Meniu</div>
+                  <div className="text-xs text-zinc-500">Explorați selecția noastră</div>
+                </div>
+              </div>
+
+              <button aria-label="Chiudi menu" className="p-2 rounded-md text-zinc-900 hover:bg-zinc-100" onClick={() => setShowMobileMenu(false)}>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            <nav className="p-4 space-y-3">
+              <a href="#menu" onClick={() => setShowMobileMenu(false)} className="flex items-center gap-3 px-4 py-3 bg-amber-500 text-white rounded-full shadow-sm hover:scale-[1.02] transition"> 
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3" strokeWidth="2" /></svg>
+                <span className="flex-1 text-center">Menu</span>
+              </a>
+
+              <a href="/recipes" onClick={(e) => { e.preventDefault(); setShowMobileMenu(false); navigate?.('/recipes') }} className="flex items-center gap-3 px-4 py-3 bg-white text-zinc-900 rounded-lg shadow-sm hover:shadow-md transition">
+                <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16" strokeWidth="2" /></svg>
+                <span className="flex-1">Rețete</span>
+              </a>
+
+              <a href="#about" onClick={() => setShowMobileMenu(false)} className="flex items-center gap-3 px-4 py-3 bg-white text-zinc-900 rounded-lg shadow-sm hover:shadow-md transition">
+                <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l9 4.5v9L12 22 3 15.5v-9L12 2z" strokeWidth="1.5" /></svg>
+                <span className="flex-1">Cine suntem</span>
+              </a>
+
+              <a href="#locations" onClick={() => setShowMobileMenu(false)} className="flex items-center gap-3 px-4 py-3 bg-white text-zinc-900 rounded-lg shadow-sm hover:shadow-md transition">
+                <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-6-4.35-6-10a6 6 0 1112 0c0 5.65-6 10-6 10z" strokeWidth="1.5" /></svg>
+                <span className="flex-1">Unde să ne găsești</span>
+              </a>
+
+              <a href="#contact" onClick={() => setShowMobileMenu(false)} className="flex items-center gap-3 px-4 py-3 bg-white text-zinc-900 rounded-lg shadow-sm hover:shadow-md transition">
+                <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 8V7a2 2 0 00-2-2h-3" strokeWidth="1.5" /></svg>
+                <span className="flex-1">Contactați-ne</span>
+              </a>
+            </nav>
+
+            <div className="mt-auto p-4 border-t border-amber-100">
+              <div className="mb-3 text-sm">Urmați-ne</div>
+              <div className="flex items-center gap-3">
+                <a href="https://www.instagram.com/_veni_vidi_edi_/" target="_blank" rel="noreferrer" className="px-3 py-2 rounded-md bg-white shadow-sm text-[#C13584]">IG</a>
+                <a href="#" className="px-3 py-2 rounded-md bg-white shadow-sm text-[#1877F2]">FB</a>
+                <a href="https://wa.me/40750438655" target="_blank" rel="noreferrer" className="ml-auto px-4 py-2 bg-emerald-600 text-white rounded-full shadow">WhatsApp</a>
+              </div>
+            </div>
+          </aside>
+        </>
       )}
+
 
 
       {/* HERO */}
@@ -206,7 +284,7 @@ export default function VeniVidiEdi({ navigate }) {
           {/* Visuale mockup del food truck */}
           <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
             <div className="p-6">
-              <img src={pizzaPImg} alt="Veni Vidi Edi food truck" className="w-full h-56 object-cover" />
+              <img src={pizzaPImg} alt="Veni Vidi Edi food truck" className="w-full h-56 object-cover rounded-md" />
               <div className="mt-4">
                 <div className="font-semibold text-lg">Pizza zilei</div>
                 <div className="text-sm text-black mt-2">Vino și încearcă pizza zilei, gata în doar 90 de secunde.</div>
@@ -218,7 +296,7 @@ export default function VeniVidiEdi({ navigate }) {
 
       {/* MENU */}
       <section id="menu" ref={menuRef} className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold mb-6 text-[#EF9651]">Menu — assaggia l'Italia</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[#EF9651]">Meniu - aromă italiană</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {menu.map(item => (
             <article key={item.id} className="card bg-white rounded-xl p-4 shadow hover:shadow-md transition">
@@ -230,7 +308,15 @@ export default function VeniVidiEdi({ navigate }) {
               <p className="mt-1 text-sm text-black">{item.desc}</p>
               <div className="mt-3 flex items-center justify-between">
                 <div className="font-medium text-[#EF9651]">{item.price}</div>
-                <button className="px-3 py-1 border rounded text-sm">Ordina</button>
+                <a
+                  href={`https://wa.me/${waNumber}?text=${encodeURIComponent(`Bună, vă rog să pregătiți ${item.name} pentru ora XX:XX.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Comandă ${item.name} via WhatsApp`}
+                  className="px-3 py-1 border rounded-full text-sm border-[#EF9651] text-[#EF9651] hover:bg-[#EF9651] hover:text-white transition focus:outline-none focus:ring-2 focus:ring-[#EF9651]/30"
+                >
+                  Comanda
+                </a>
               </div>
             </article>
           ))}
@@ -319,25 +405,25 @@ export default function VeniVidiEdi({ navigate }) {
 
       {/* CONTACT */}
       <section id="contact" className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold mb-6 text-[#EF9651]">Contactaţi-ne</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[#EF9651]">Contactați-ne</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <form className="bg-white rounded-xl p-6 shadow space-y-4">
-            <input className="w-full p-3 border rounded" placeholder="Nome" />
+            <input className="w-full p-3 border rounded" placeholder="Nume" />
             <input className="w-full p-3 border rounded" placeholder="Email" />
-            <textarea className="w-full p-3 border rounded" placeholder="Messaggio" rows={4} />
+            <textarea className="w-full p-3 border rounded" placeholder="Mesaj" rows={4} />
             <div className="flex items-center gap-3">
-              <button type="button" className="px-5 py-3 bg-amber-500 text-white rounded">Invia</button>
-              <div className="text-sm text-black">Risponderemo al più presto.</div>
+              <button type="button" className="px-5 py-3 bg-amber-500 text-white rounded">Trimite</button>
+              <div className="text-sm text-black">Vom răspunde în cel mai scurt timp.</div>
             </div>
           </form>
 
           <div className="bg-white rounded-xl p-6 shadow">
-            <div className="font-semibold">Info rapida</div>
-            <div className="mt-2 text-sm text-black">Telefono: +40 750 438 655</div>
+            <div className="font-semibold">Informații rapide</div>
+            <div className="mt-2 text-sm text-black">Telefon: +40 750 438 655</div>
             <div className="mt-1 text-sm text-black">Email: hello@venividiedi.ro</div>
 
               <div className="mt-4">
-                <div className="font-semibold">Social</div>
+                <div className="font-semibold">Rețele sociale</div>
                 <div className="mt-2 flex gap-3 items-center">
                   <a href="https://www.instagram.com/_veni_vidi_edi_/" target="_blank" rel="noreferrer" className="text-sm underline text-[#C13584]">Instagram</a>
                   <a href="#" target="_blank" rel="noreferrer" className="text-sm underline text-[#1877F2]">Facebook</a>
