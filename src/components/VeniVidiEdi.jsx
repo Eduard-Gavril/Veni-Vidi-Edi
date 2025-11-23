@@ -387,7 +387,7 @@ export default function VeniVidiEdi({ navigate }) {
 
       {/* LOCATIONS */}
       <section id="locations" className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold mb-6 text-[#EF9651]">Unde să ne găsești</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[#EF9651]">Hartă</h2>
         {/* Location cards moved into the About column; keep map below */}
 
         <div className="mt-8 bg-white rounded-lg overflow-hidden shadow">
